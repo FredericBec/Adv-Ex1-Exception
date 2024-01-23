@@ -34,8 +34,9 @@ public abstract class Person {
 		return age;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setAge(int age) throws Exception{
+		if(age < 0) throw new Exception("L'âge ne peut être négatif");
+		else this.age = age;
 	}
 
 	public String getAddress() {
@@ -50,7 +51,6 @@ public abstract class Person {
 
 	@Override
 	public String toString() {
-		return "Person [firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", address=" + address
-				+ "]";
+		return "prénom : " + firstName + ", nom : " + lastName + ", âge : " + age + ", adresse : " + address;
 	}
 }

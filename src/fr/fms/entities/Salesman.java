@@ -1,5 +1,7 @@
 package fr.fms.entities;
 
+import fr.fms.exception.RemunerationException;
+
 public class Salesman extends Person {
 
 	private static final double turnover = 50000.0;
@@ -35,8 +37,9 @@ public class Salesman extends Person {
 		return percentageTurnover;
 	}
 
-	public void setPercentageTurnover(double percentageTurnover) {
-		this.percentageTurnover = percentageTurnover;
+	public void setPercentageTurnover(double percentageTurnover) throws Exception{
+		if(percentageTurnover < 0) throw new RemunerationException("Impossible d'avoir un pourcentage de chiffre inférieur à 0"); 
+		else this.percentageTurnover = percentageTurnover;
 	}
 	
 	@Override
@@ -46,7 +49,6 @@ public class Salesman extends Person {
 
 	@Override
 	public String toString() {
-		return "Salesman [bornCity=" + bornCity + ", company=" + company + ", percentageTurnover=" + percentageTurnover
-				+ ", toString()=" + super.toString() + "]";
+		return super.toString() + "\n" + bornCity + ", entreprise" + company + ", %CA : " + percentageTurnover;
 	}
 }

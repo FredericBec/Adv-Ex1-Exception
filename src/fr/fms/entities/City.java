@@ -1,5 +1,7 @@
 package fr.fms.entities;
 
+import fr.fms.exception.ResidentException;
+
 public class City {
 
 	private String name;
@@ -32,13 +34,14 @@ public class City {
 		return residentNumber;
 	}
 
-	public void setResidentNumber(int residentNumber) {
-		this.residentNumber = residentNumber;
+	public void setResidentNumber(int residentNumber) throws Exception{
+		if(residentNumber <= 0) throw new ResidentException();
+		else this.residentNumber = residentNumber;
 	}
 
 	@Override
 	public String toString() {
-		return "City [name=" + name + ", country=" + country + ", residentNumber=" + residentNumber + "]";
+		return "Ville de naissance : " + name + ", pays : " + country + ", population : " + residentNumber;
 	}
 	
 	

@@ -1,8 +1,11 @@
 package fr.fms.entities;
 
+import fr.fms.exception.RemunerationException;
+
 public class Employee extends Person {
 
 	private static final double wageCosts = 0.20;
+	private static final double MIN_SALARY = 1100.0;
 	
 	private String company;
 	private double salary;
@@ -27,8 +30,9 @@ public class Employee extends Person {
 		return salary;
 	}
 
-	public void setSalary(double salary) {
-		this.salary = salary;
+	public void setSalary(double salary) throws Exception{
+		if(salary < 0) throw new RemunerationException("Le salaire de l'employé " + this.getLastName() + " ne peut pas être inférieur à 0");
+		else this.salary = salary;
 	}
 
 	public City getBornCity() {
@@ -46,7 +50,6 @@ public class Employee extends Person {
 
 	@Override
 	public String toString() {
-		return "Employee [company=" + company + ", salary=" + salary + ", bornCity=" + bornCity + ", toString()="
-				+ super.toString() + "]";
+		return super.toString() + "\n" + bornCity + " entreprise : " + company + ", salaire : " + salary;
 	}
 }
